@@ -1,0 +1,23 @@
+
+h3 {{exam.title}}
+h5 {{exam.content}}
+br
+form(ng-submit="submitExam()" name="exam")
+  div(ng-repeat="question in questions")
+    div
+      h5 {{$index+1}}. {{question.content}}
+      input(type="radio" id="oa" ng-name="'choice'+$index" value="a" ng-model="answers[$index]" ng-disabled="done")
+      label(for="oa") A. {{question.a}}
+      br
+      input(type="radio" id="ob" ng-name="'choice'+$index" value="b" ng-model="answers[$index]" ng-disabled="done")
+      label(for="ob") B. {{question.b}}
+      br
+      input(type="radio" id="oc" ng-name="'choice'+$index" value="c" ng-model="answers[$index]" ng-disabled="done")
+      label(for="oc") C. {{question.c}}
+      br
+      input(type="radio" id="od" ng-name="'choice'+$index" value="d" ng-model="answers[$index]" ng-disabled="done")
+      label(for="od") D. {{question.d}}
+  br
+  input(type="submit" id="submit" value="Submit" ng-hide="done")
+
+  h2 Score: {{score}}%

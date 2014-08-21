@@ -1,0 +1,8 @@
+
+form(name="loginForm" ng-submit="login(credentials)" novalidate form-autofill-fix)
+  label(for="email") Email:
+  input(type="text" id="email" ng-model="credentials.email")
+  label(for="password") Password:
+  input(type="password" id="password" ng-model="credentials.password")
+  button(type="submit") Sign in!
+

@@ -1,0 +1,57 @@
+div(ng-repeat="chapter in chapters")
+  h4 {{chapters.indexOf(chapter)+1}}. {{chapter.title}}
+  p {{chapter.content}}
+br
+button(ng-show="isTeacher" ng-click="showChapterForm=!showChapterForm") Add chapter
+br
+br
+form(ng-show="showChapterForm"  name="chapterForm" ng-submit="addChapter(chp)" novalidate)
+  label(for="title") Title
+  input(type="text" id="title" class="form-control" ng-model="chp.title" required)
+  label(for="content") Content
+  textarea(id="content" class="form-control" ng-model="chp.content")
+  br
+  button(type="submit" class="btn btn-lg") Save
+
+
+h4 Quizzes:
+p {{quizzesStatement}}
+  div(ng-repeat="quiz in quizzes")
+    li: a(ui-sref="dash.quizzes.detail({quizId: quiz.id})") {{quiz.title}}
+br
+button(ng-show="isTeacher" ng-click="showQuizzesForm=!showQuizzesForm") Add quiz
+br
+br
+form(ng-show="showQuizzesForm"  name="quizForm" ng-submit="addQuiz(qz)" novalidate)
+  label(for="qztitle") Title
+  input(type="text" id="qztitle" class="form-control" ng-model="qz.title" required)
+  label(for="qzcontent") Description
+  textarea(id="qzcontent" class="form-control" ng-model="qz.content")
+  br
+  div Questions
+  ul
+    div(ng-repeat="q in quizQuestions")
+      hr
+      label(for="qcontent") Question {{quizQuestions.indexOf(q)+1}}
+      textarea(class="form-control" id="qcontent" ng-model="q.content")
+      input(type="radio" name="correct" value="a" ng-model="q.answer")
+      label(for="qa") A.
+      input(type="text" id="qa" class="form-control" ng-model="q.a")
+      input(type="radio" name="correct" value="b" ng-model="q.answer")
+      label(for="qb") B.
+      input(type="text" id="qb" class="form-control" ng-model="q.b")
+      input(type="radio" name="correct" value="c" ng-model="q.answer")
+      label(for="qc") C.
+      input(type="text" id="qc" class="form-control" ng-model="q.c")
+      input(type="radio" name="correct" value="d" ng-model="q.answer")
+      label(for="qd") D.
+      input(type="text" id="qd" class="form-control" ng-model="q.d")
+      br
+      span(ng-hide="quizQuestions.length == 1")
+        button(ng-click="quizQuestions.splice($index, 1)" class="btn btn-sm") Remove question
+    br
+    hr
+    li
+      button(ng-click="newQuestion($event)" class="btn btn-sm") Add question
+
+  button(type="submit" class="btn btn-lg") Save

@@ -1,0 +1,36 @@
+div(id="signup" class="container")
+
+  div(class="row header col-md-12")
+    br
+    h4 Sign up for ThinkLink
+
+  div(class="row col-md-12 wrapper clearfix formy")
+    button(ng-click="newAssembly=!newAssembly" class="btn btn-lg") New Class?
+    form(ng-show="newAssembly" accept-charset="UTF-8" class="form-horizontal" name="signupAssemblyForm" novalidate)
+      div(class="form-group")
+        label(class="col-sm-3 control-label") Class
+        div(class="col-sm-9")
+          input(type="text" placeholder="Econ 101" name="class" class="form-control" ng-model="assembly.name" autofocus="autofocus" ng-maxlength="30")
+
+    hr
+
+    form(accept-charset="UTF-8" class="form-horizontal" name="signupUserForm" ng-submit="register()" novalidate)
+      div(class="form-group" ng-class="{ 'has-error' : signupUserForm.name.$invalid && !signupUserForm.name.$pristine }")
+        label(class="col-sm-3 control-label") Name
+        div(class="col-sm-9")
+          input(type="text" name="name" class="form-control" ng-model="user.name" required)
+          p(ng-show="signupUserForm.name.$invalid && !signupUserForm.name.$pristine" class="help-block") Your name is required.
+      div(class="form-group" ng-class="{ 'has-error' : signupUserForm.email.$invalid && !signupUserForm.email.$pristine }")
+        label(class="col-sm-3 control-label") Email
+        div(class="col-sm-9")
+          input(type="email" name="email" class="form-control" ng-model="user.email")
+          p(ng-show="signupUserForm.email.$invalid && !signupUserForm.email.$pristine" class="help-block") Enter a valid email.
+      div(class="form-group" ng-class="{ 'has-error' : signupUserForm.password.$invalid && !signupUserForm.password.$pristine }")
+        label(class="col-sm-3 control-label") Password
+        div(class="col-sm-9")
+          input(type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="6" ng-maxlength="50")
+          p(ng-show="signupUserForm.password.$error.minlength" class="help-block") Password needs to be at least six characters.
+          p(ng-show="signupUserForm.password.$error.maxlength" class="help-block") Password needs to be at most 50 characters.
+      
+      div(class="submit")
+        button(type="submit" class="btn btn-lg" ng-disabled="signupUserForm.$invalid") Create Account

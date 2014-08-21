@@ -1,0 +1,21 @@
+h3(ng-show="isTeacher") Welcome, teacher!
+
+h3 Assembly info:
+p Name: {{assembly.name}}
+
+h4 {{assembly.name}}'s textbooks
+
+div(ng-repeat="b in books")
+  a(ui-sref="dash.books.detail({bookId: b.id})") {{b.title}}
+br
+button(ng-show="isTeacher" ng-click="showBkForm=!showBkForm") Add books
+br
+br
+form(ng-show="showBkForm"  name="bForm" ng-submit="addBook(bk)" novalidate)
+  label(for="title") Title:
+  input(type="text" id="title" class="form-control" ng-model="bk.title" required)
+  br
+  button(type="submit" class="btn btn-lg") Save
+
+br
+hr

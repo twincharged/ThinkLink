@@ -1,0 +1,9 @@
+h3 Assemblies:
+
+div(ng-repeat="as in assemblies")
+  a(ui-sref="dash.assembly({assemblyId: as.id})") {{as.name}}
+
+h3 Homeworks:
+
+div(ng-repeat="hw in homeworks")
+  a(ui-sref="dash.books.detail({bookId: hw.book_id})") {{hw.book_title}} due at {{hw.due_date}}

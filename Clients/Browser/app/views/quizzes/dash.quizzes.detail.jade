@@ -1,0 +1,23 @@
+
+h3 {{quiz.title}}
+h5 {{quiz.content}}
+br
+form(ng-submit="submitQuiz()" name="quiz")
+  div(ng-repeat="question in questions")
+    div
+      h5 {{$index+1}}. {{question.content}}
+      input(type="radio" id="oa" ng-name="'choice'+$index" value="a" ng-model="answers[$index]")
+      label(for="oa") {{question.a}}
+      br
+      input(type="radio" id="ob" ng-name="'choice'+$index" value="b" ng-model="answers[$index]")
+      label(for="ob") {{question.b}}
+      br
+      input(type="radio" id="oc" ng-name="'choice'+$index" value="c" ng-model="answers[$index]")
+      label(for="oc") {{question.c}}
+      br
+      input(type="radio" id="od" ng-name="'choice'+$index" value="d" ng-model="answers[$index]")
+      label(for="od") {{question.d}}
+  br
+  input(type="submit" id="submit" value="Submit")
+
+  h2 Score: {{score}}%

@@ -1,0 +1,64 @@
+
+div(ng-repeat="unit in units")
+  li: a(ui-sref="dash.units.detail({unitId: unit.id})") {{unit.title}}
+br
+button(ng-show="isTeacher" ng-click="showUnitForm=!showUnitForm") Add unit
+br
+br
+form(ng-show="showUnitForm"  name="unitForm" ng-submit="addUnit(unt)" novalidate)
+  label(for="title") Title
+  input(type="text" id="title" class="form-control" ng-model="unt.title" required)
+  label(for="content") Description
+  textarea(id="content" class="form-control" ng-model="unt.content")
+  br
+  button(type="submit" class="btn btn-lg") Save
+
+
+h4 Exams:
+p {{examsStatement}}
+  div(ng-repeat="exam in exams")
+    li: a(ui-sref="dash.exams.detail({examId: exam.id})") {{exam.title}}
+br
+button(ng-show="isTeacher" ng-click="showExamForm=!showExamForm") Add exam
+br
+br
+form(ng-show="showExamForm"  name="examForm" ng-submit="addExam(ex)" novalidate)
+  label(for="extitle") Title
+  input(type="text" id="extitle" class="form-control" ng-model="ex.title" required)
+  label(for="excontent") Description
+  textarea(id="excontent" class="form-control" ng-model="ex.content")
+  br
+  div Questions
+  ul
+    div(ng-repeat="q in examQuestions")
+      hr
+      label(for="qcontent") Question {{examQuestions.indexOf(q)+1}}
+      textarea(class="form-control" id="qcontent" ng-model="q.content")
+      input(type="radio" name="correct" value="a" ng-model="q.answer")
+      label(for="qa") A.
+      input(type="text" id="qa" class="form-control" ng-model="q.a")
+      input(type="radio" name="correct" value="b" ng-model="q.answer")
+      label(for="qb") B.
+      input(type="text" id="qb" class="form-control" ng-model="q.b")
+      input(type="radio" name="correct" value="c" ng-model="q.answer")
+      label(for="qc") C.
+      input(type="text" id="qc" class="form-control" ng-model="q.c")
+      input(type="radio" name="correct" value="d" ng-model="q.answer")
+      label(for="qd") D.
+      input(type="text" id="qd" class="form-control" ng-model="q.d")
+      br
+      span(ng-hide="examQuestions.length == 1")
+        button(ng-click="examQuestions.splice($index, 1)" class="btn btn-sm") Remove question
+    br
+    hr
+    li
+      button(ng-click="newQuestion($event)" class="btn btn-sm") Add question
+
+  button(type="submit" class="btn btn-lg") Save
+
+
+
+
+
+
+
